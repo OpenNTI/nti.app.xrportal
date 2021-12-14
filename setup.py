@@ -9,11 +9,13 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'Paste',
     'plaster_pastedeploy',
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
-    'waitress',
+    'gunicorn[gevent]',
+    'nti.wsgi.ping @ git+ssh://git@github.com/NextThought/nti.wsgi.ping'
 ]
 
 tests_require = [
@@ -67,6 +69,6 @@ setup(
     entry_points={
         'paste.app_factory': [
             'main = nti.app.xrportal:main',
-        ],
+        ]
     },
 )
