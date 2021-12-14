@@ -1,0 +1,26 @@
+<!-- -*- mode: nxml -*- -->
+<configure	xmlns="http://namespaces.zope.org/zope"
+			xmlns:i18n="http://namespaces.zope.org/i18n"
+			xmlns:z3c="http://namespaces.zope.org/z3c"
+			xmlns:zcml="http://namespaces.zope.org/zcml">
+
+	<include package="zope.component" file="meta.zcml" />
+	<include package="zope.security" file="meta.zcml" />
+	<include package="zope.component" />
+	<include package="zope.security" />
+
+	<adapter factory=".rest.render_externalizable_factory"
+			 provides=".interfaces.IResponseRenderer"
+			 for="*" />
+
+	<adapter factory=".caching.default_cache_controller_factory"
+			 for="*" />
+			 
+	<adapter factory=".caching.unmodified_factory" />
+	<adapter factory=".caching.uncacheable_factory" />
+	<adapter factory=".caching.private_uncacheable_factory" />
+
+	<utility zcml:condition="have testmode"
+			 component=".rest._throw_action" />
+
+</configure>

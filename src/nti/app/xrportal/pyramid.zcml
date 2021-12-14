@@ -1,0 +1,20 @@
+<configure xmlns="http://pylonshq.com/pyramid">
+
+  <include package="pyramid_zcml" />
+
+  <route
+      name="cmi5launch"
+      pattern="/launch/cmi5"
+      />
+  <route
+      name="cmi5status"
+      pattern="/launch/cmi5status"
+      />
+  <route
+      name="cmi5handoff"
+      pattern="/launch/cmi5handoff"
+      />
+
+  <scan package=".launch.cmi5"/>
+
+</configure>

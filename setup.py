@@ -9,14 +9,29 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'gunicorn[gevent]',
     'Paste',
     'plaster_pastedeploy',
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
     'pyramid_zcml',
-    'gunicorn[gevent]',
-    'nti.wsgi.ping @ git+ssh://git@github.com/NextThought/nti.wsgi.ping'
+    'redis',
+    'nti.app.pyramid_zope',
+    'nti.transactions',
+    'nti.base @ git+ssh://git@github.com/NextThought/nti.base',
+    'nti.links @ git+ssh://git@github.com/NextThought/nti.links',
+    'nti.mimetype @  git+ssh://git@github.com/NextThought/nti.mimetype',
+    'nti.ntiids @ git+ssh://git@github.com/NextThought/nti.ntiids',
+    'nti.traversal @ git+ssh://git@github.com/NextThought/nti.traversal',
+    'nti.wsgi.ping @ git+ssh://git@github.com/NextThought/nti.wsgi.ping',
+    'nti.xapi @ git+ssh://git@github.com/NextThought/nti.xapi',
+    'qrcode[pil]',
+    'requests',
+    'z3c.rml',
+    'zope.cachedescriptors',
+    'zope.component',
+    'zope.interface'
 ]
 
 tests_require = [
@@ -24,6 +39,7 @@ tests_require = [
     'pytest >= 3.7.4',
     'pytest-cov',
     'pyhamcrest',
+    'fakeredis',
     'fudge',
     'zope.testing',
     'zope.testrunner',
