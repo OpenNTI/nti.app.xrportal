@@ -14,6 +14,7 @@ requires = [
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
+    'pyramid_zcml',
     'gunicorn[gevent]',
     'nti.wsgi.ping @ git+ssh://git@github.com/NextThought/nti.wsgi.ping'
 ]
