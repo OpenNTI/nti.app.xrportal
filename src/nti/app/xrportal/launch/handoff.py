@@ -38,8 +38,7 @@ class HandoffTokenGenerator(object):
         alphabet and code_length.
         """
 
-        #py2 doesn't support random.choices
-        code = ''.join(random.choice(self.alphabet) for i in range(0,self.code_length))
+        code = ''.join(random.choices(self.alphabet, k=self.code_length))
         return _HandoffToken(code.upper())
 
 class _AbortingDataManager(ObjectDataManager):
