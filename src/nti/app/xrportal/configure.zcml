@@ -6,6 +6,7 @@
   
   <include package="nti.traversal" />
   <include package="nti.links" />
+  <include package="nti.xapi" />
   
   <include package="nti.externalization" />
   <include package="nti.externalization" file="meta.zcml"/>
@@ -14,6 +15,5 @@
   
   <include package=".renderers" file="configure.zcml" />
   
-  <include package="." file="pyramid.zcml" />
   <include package=".launch" />
 </configure>

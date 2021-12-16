@@ -76,6 +76,7 @@ class RedisBackedHandoffStorage(object):
     """
 
     _redis = None
+    _generator = None
 
     ttl = 300
 

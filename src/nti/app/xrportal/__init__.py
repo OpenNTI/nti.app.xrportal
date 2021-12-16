@@ -30,6 +30,8 @@ def configure(settings=None, registry=None):
         config.add_renderer(name='.pt', factory='nti.app.pyramid_zope.z3c_zpt.renderer_factory')
         config.add_tween('nti.transactions.pyramid_tween.transaction_tween_factory',
                          over=EXCVIEW)
+
+        config.load_zcml( 'nti.app.xrportal:pyramid.zcml' )
     return config
         
 def main(global_config, **settings):
