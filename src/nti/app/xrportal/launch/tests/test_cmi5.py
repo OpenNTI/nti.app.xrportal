@@ -1,11 +1,15 @@
 from hamcrest import assert_that
+from hamcrest import calling
 from hamcrest import has_entries
 from hamcrest import has_properties
 from hamcrest import has_property
+from hamcrest import raises
 
 from pyramid.testing import DummyRequest
 
 import unittest
+
+from zope.schema import ValidationError
 
 from nti.testing.matchers import verifiably_provides
 
@@ -40,3 +44,9 @@ class TestLaunchParamParsing(unittest.TestCase):
             'activityId', 'http://www.example.com/LA1/001/intro',
             'actor', has_property('account', has_property('name', '1625378'))
         ))
+
+    def test_missing_raises_error(self):
+        self.launchParams.pop('endpoint')
+        request = DummyRequest(params=self.launchParams)
+        assert_that(calling(ICMI5LaunchParams).with_args(request),
+                    raises(ValidationError))
