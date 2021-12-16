@@ -83,11 +83,15 @@ class RedisBackedHandoffStorage(object):
     def _redis_client(self):
         return self._redis or component.getUtility(IRedisClient)
 
+    @property
+    def _token_generator(self):
+        return self._generator or component.getUtility(IHandoffTokenGenerator)
+
     def _make_redis_key(self, token):
         return 'xr/devicehandoff/'+getattr(token, 'code', token).upper()
 
     def store_handoff_data(self, data):
-        token = component.getUtility(IHandoffTokenGenerator).generate_token()
+        token = self._token_generator.generate_token()
         rkey = self._make_redis_key(token)
         redis = self._redis_client
         transaction.get().join(ObjectDataManager(target=redis,
