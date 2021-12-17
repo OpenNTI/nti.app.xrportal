@@ -8,11 +8,11 @@
       />
   <route
       name="cmi5status"
-      pattern="/launch/cmi5status"
+      pattern="/launch/cmi5/status"
       />
   <route
       name="cmi5handoff"
-      pattern="/launch/cmi5handoff"
+      pattern="/launch/handoff"
       />
 
   <scan package=".launch.cmi5"/>

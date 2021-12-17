@@ -207,7 +207,7 @@ class CMI5LaunchView(object):
                 'cmi5registration': params.registration,
                 'cmi5session': launch_data['contextTemplate']['extensions']['https://w3id.org/xapi/cmi5/context/extensions/sessionid'],
                 'activityid': params.activityId,
-                'apihref': '/launch/cmi5status'
+                'apihref': self.request.route_url('cmi5status')
             }
         }
 
