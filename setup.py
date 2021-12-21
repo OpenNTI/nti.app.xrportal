@@ -24,6 +24,7 @@ requires = [
     'nti.mimetype @  git+ssh://git@github.com/NextThought/nti.mimetype',
     'nti.ntiids @ git+ssh://git@github.com/NextThought/nti.ntiids',
     'nti.traversal @ git+ssh://git@github.com/NextThought/nti.traversal',
+    'nti.wsgi.cors',
     'nti.wsgi.ping @ git+ssh://git@github.com/NextThought/nti.wsgi.ping',
     'nti.xapi @ git+ssh://git@github.com/NextThought/nti.xapi',
     'qrcode[pil]',
