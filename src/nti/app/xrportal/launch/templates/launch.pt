@@ -259,6 +259,9 @@
 		    </g>
 		</svg>
 		<div class="code-text" tal:content="options/code">000000000</div>
+		<div class="webgl-launch-contanier" tal:condition="options/webgl_launch">
+		    <a tal:attributes="href options/webgl_launch">No headset? Launch on the web!</a>
+		</div>
 	    </div>
 	    <div class="finished-container">
 		<a tal:condition="options/returnURL" tal:attributes="href options/returnURL">I'm all done!</a>

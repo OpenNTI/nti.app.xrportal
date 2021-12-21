@@ -16,6 +16,8 @@ from qrcode.image.svg import SvgImage
 
 from qrcode.main import QRCode
 
+from urllib import parse
+
 from zope import component
 
 from zope import interface
@@ -192,6 +194,23 @@ class CMI5LaunchView(object):
             logger.debug('Invalid launch request %s', e)
             raise hexc.HTTPBadRequest()
 
+        platforms = launch_data['launchParameters']['Platforms']
+
+        webgl_launch = platforms.get('WebGL', {})
+        webgl_launch_url = webgl_launch.get('URL')
+        if webgl_launch_url:
+            #Add the code, be careful not to mangle query strings
+            parsed = parse.urlparse(webgl_launch_url)
+            query = parse.parse_qs('')
+            #TODO should we namespace the launch param or raise if it is already in use
+            query['launch'] = self.code
+            parsed = parsed._replace(query=parse.urlencode(query))
+            webgl_launch_url = parse.urlunparse(parsed)
+
+        #If all we have is webgl, just redirect
+        if len(platforms) == 1 and webgl_launch_url:
+            raise hexc.HTTPSeeOther(webgl_launch_url)
+
         return {
             'codettl': 300-10, # ttl with some buffer. FIXME don't hardcode this, expose it on the code
             'mode': 'launch',
@@ -208,7 +227,8 @@ class CMI5LaunchView(object):
                 'cmi5session': launch_data['contextTemplate']['extensions']['https://w3id.org/xapi/cmi5/context/extensions/sessionid'],
                 'activityid': params.activityId,
                 'apihref': self.request.route_url('cmi5status')
-            }
+            },
+            'webgl_launch': webgl_launch_url
         }
 
 @view_config(route_name='cmi5status',
