@@ -87,6 +87,9 @@ setup(
     entry_points={
         'paste.app_factory': [
             'main = nti.app.xrportal:main',
+        ],
+        'console_scripts': [
+            "nti_pserve=nti.app.xrportal:main",
         ]
     },
 )
