@@ -76,7 +76,7 @@ setup(
     namespace_packages=['nti', 'nti.app'],
     include_package_data=True,
     package_data={
-        '': ['*.ini','*.mako', '*.zcml'],
+        '': ['*.ini','*.mako', '*.zcml', '*.pt'],
     },
     zip_safe=False,
     extras_require={
