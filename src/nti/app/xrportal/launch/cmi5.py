@@ -208,8 +208,10 @@ class CMI5LaunchView(object):
             webgl_launch_url = parse.urlunparse(parsed)
 
         #If all we have is webgl, just redirect
-        if len(platforms) == 1 and webgl_launch_url:
-            raise hexc.HTTPSeeOther(webgl_launch_url)
+        # Stop auto redirecting as there may be a headset
+        # to launch this on. 2/2/22 -cutz
+        #if len(platforms) == 1 and webgl_launch_url:
+        #   raise hexc.HTTPSeeOther(webgl_launch_url)
 
         return {
             'codettl': 300-10, # ttl with some buffer. FIXME don't hardcode this, expose it on the code
